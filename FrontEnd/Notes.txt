@@ -1,0 +1,13 @@
+# to create an ordered list
+ul>ol>li*5{country -$} - creates a list of 5 countries
+
+select>option*20{country-$}
+
+Create a table with 50 rows and 5 columns
+table>body>tr*50>td*5{Data-$}
+
+JS code running in browser - frontend development
+JS code running in Node.js - backend development
+
+If a file runs on browser, there is no guarantee that it runs on node.js too
+

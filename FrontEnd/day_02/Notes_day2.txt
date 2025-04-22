@@ -1,0 +1,87 @@
+HTML Emmets/shortcuts
+====================
+https://docs.emmet.io/cheat-sheet/
+
+
+#div1
+.div2
+button.btn.btn-primary{Primary Button}
+ul>li*5{Country-$}
+select>option*20{country-$}
+table>tbody>tr*50>td*5{Data-$}
+
+
+How to use CSS in an HTML File
+==============================
+1. inline CSS    ( style attribute) (restricted to an Element)
+    <div style='color:red'>This is a div</div>
+2. internal CSS  (style tag/element) (restricted to 1 HTML page)
+3. external CSS 
+    a. write the css in a separate .css File
+    b. include that in html file using <link>
+       <link rel="stylesheet" href="demo_1.css">
+
+
+How to use Bootstrap
+====================
+Add CDN Link to the <head>of HTML file
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+How to write and Execute Javascript code
+========================================
+1. Browser (ForntEnd Development)
+   a. create a javascript file with some javascript content (abc.js) 
+   b. include that javascript file into HTML file
+      <script src="./addition.js"></script>
+   c. open the HTML file in browser (alt+b)
+      
+2. NodeJS (BackEnd Development)
+   a. create a javascript file with some javascript content (abc.js)
+   b. Run that javascript file with the below command
+      node <filename>.js  (make sure nodejs is installed)
+Note : Every javascript code that runs on browser might not run in nodejs
+
+window.alert(`Addition of ${a} and ${b} is ${a+b}`); // this statement only works in browser, not in nodejs
+
+
+Most Commonly Used Javascript functions
+=======================================
+console.log()         console : object , log : function
+document.write()      document : object , write : function
+window.alert()        window : object , alert : function
+
+log('Hellooooooo'); // No // log is not defined 
+write('Hellooooooo');  // No // write is not defined 
+alert('Hiiiiiiiiiii'); // yes
+
+Note : while accessing window object methods/functions , using window.function() is not mandatory
+
+
+Most Commonly Used javascript Objects/Classes
+============================================
+console : log(), error(), warn(), assert(), table(), time(), timeEnd()
+window : alert(), prompt(), confirm(), print(), close()
+document : write(), writeln()
+Math :  abs(), sqrt(), cbrt(), max(), min()
+Array : push(), pop(), filter(), map()
+Object : assign(), create(), freeze()
+
+window object functions
+=======================
+alert() :  display some message
+           message + ok
+
+confirm() : User Confirmation
+            message + ok(true) , cancel(false)
+
+Prompt() : to collect user input
+            message + inputBox + ok(true) , cancel(false)
+
+
+HomeWork/Assignment
+===================
+1. Revise Day-2 Discussion
+2. Practice Emmets (https://docs.emmet.io/cheat-sheet/)
+3. write a program, using prompt() ask user to enter 2 numbers, display addition result

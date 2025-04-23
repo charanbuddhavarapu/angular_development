@@ -1,0 +1,20 @@
+<script>
+
+    let a = [10,20]; //array
+    let b = {x:10, y:20};  //object(key-value pairsmeans object)
+
+    console.log(a,typeof a);
+    console.log(b, typeof b);
+
+    // for both array and object the type of is object
+    //so (typeof) is not useful to differentitate bw array and objects
+
+    //SO we need to use instanceof or
+
+    console.log(a instanceof Array) //TRUE
+    console.log(b instanceof Array) //FALSE
+
+    console.log(Array.isArray(b)); 
+
+    //NOTE: every array is an object , but every object is not an array
+</script>

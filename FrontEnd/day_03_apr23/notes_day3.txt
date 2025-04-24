@@ -4,6 +4,8 @@ non primitive - objects
 IN ECMA script(6Th) 2015 version lot of new features were launched
 current version is 15
 
+Key additions include let and const keywords for variable declaration, arrow functions, destructuring, template literals, classes, modules, and promises. 
+
 to convert type script file to JS file, we need to use "tsc"-type script compiler to run it
 
 
@@ -59,3 +61,7 @@ How to convert typescript file to Javascript
 2. npm i -g typescript  && tsc <filename>.ts
            (OR)
     npx tsc  <filename>.ts
+    tsc-type script compiler
+    g - global, it will initiate the npm globally in the project
+
+    npx - node package executer

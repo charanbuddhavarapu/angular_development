@@ -1,0 +1,26 @@
+<script>
+
+    var a = 10;
+    let b = 20;
+    const c = 30;
+
+    console.log(`Value of a is ${a}`);
+    console.log(`Value of b is ${b}`);  
+    console.log(`Value of c is ${c}`);
+
+
+    //if the array is declared with const key word we can push the element in the arrey
+    const arr1 = [1, 2, 3, 4, 5];
+    arr1.push(6);
+    console.log(arr1);
+
+    //but we cannot assign the same array name again to another array
+    //arr1 = [7, 8, 9]; // this will throw an error
+
+    const obj = { name: "John", age: 30 };
+    console.log(obj);
+    obj.name = "Doe"; // this is allowed
+    console.log(obj);
+    obj = { name: "Doe", age: 30 }; // this will throw an error
+    console.log(obj);
+</script>

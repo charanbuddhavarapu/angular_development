@@ -1,0 +1,20 @@
+Variabe in JS can be declared using var, const, let
+
+Why do we need to have var, cont and let when their purpose is to just declare the variables
+
+const and let came in ECMA version 6 to come up with certain limitations
+
+VAR ---- 
+
+when java script code is executed, N number od execution contexts are created
+meaning 1 global execution context is created to execute global code
+for each function call 1 execution context is created
+execution context is nothing but the environment in which the current code is executed
+
+---------------------TEMPORAL DEAD ZONE-----FOR LET AND CONST ONLY-------------------------
+even if the variable is initialized and declared in the memory, JS won't allow us to  use it until we
+cross the line where the variable is declared, until then the value of the variable is undefined
+
+For var, you can declare it in line number 245, but still use it in line 1
+
+--YOU cannot acheieve block scope by using VAR, so need to use let and const

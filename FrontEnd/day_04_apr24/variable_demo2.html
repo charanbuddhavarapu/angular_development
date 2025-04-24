@@ -1,0 +1,24 @@
+<script>
+    //all about let and const cant be redeclared but var can be redeclared
+    let a = 10;
+    console.log(`global`,a)
+
+    function f1(){
+        let a = 10;
+        console.log(`function`,a)
+
+        if(true){
+            let a = 1000;
+            console.log(`block`,a)
+        }
+
+    }
+
+    f1();
+    //Any variable we write inside a function is called function scope
+    //Any variable we write inside a block is called block scope
+    //Any variable we write outside a function is called global scope
+    //let and const are block scope variables
+
+
+</script>

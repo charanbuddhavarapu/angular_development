@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        class Student {
+            firstName = 'Rohit';
+            lastName = 'Sharma';
+    
+            fullName1() {
+                console.log(this.firstName, this.lastName);
+            }
+    
+            fullName2 = () =>{
+                console.log(this.firstName, this.lastName);
+            }
+        }
+
+        let std = new Student();
+        std.fullName1();
+        std.fullName2();
+
+        console.log('AAAAAA')
+        let a = std.fullName2;
+        a(); // fullName2 this = student
+        let b = a;
+        b(); //fullName2. this = student
+        let c = b;
+        c(); //fullNamne2, this = student()
+
+        //----------BUT------
+        console.log('bbbbbbbb')
+        
+        let x = std.fullName1;
+        x(); //fullName1, this = global scope, and it loses Student as object
+        //it loses its context, because now it's just a regular function call, not bound to std anymore.
+
+        let y = x;
+        y(); // now this !=Student(), as regular functions can't invoke this
+
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -83,4 +83,4 @@ Temporal Dead Zone
  This period is the temporal dead zone (TDZ).
 -The state where variables are un-reachable. They are in memory, but they aren't usable.
 -The let and const variables exist in the TDZ from the start of their enclosing scope until they are initialized.
--if a let/const variable is accessed before its initialization, it would throw a ReferenceError. Because of the TDZ.
+-if a let/const variable is accessed before its initialization, it would throw a "ReferenceError". Because of the TDZ.

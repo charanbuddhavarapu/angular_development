@@ -9,6 +9,12 @@
         console.log(a) //undefined because of hoisting
         console.log(b)
         console.log(c)
+        //Even though a is defined after the console.log, JavaScript moves the declaration 
+       // (not the value) to the top like this:
+
+       //var a;
+        //console.log(a);  // undefined
+        //a = 10;
         var a = 10;
         let b = 20;
         const c = 30;

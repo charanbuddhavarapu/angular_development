@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    
+</head>
+<body>
+    <button id="btn1" onclick="changeColor()">Button1</button>
+    <button id="btn2" onclick="changeColor()">Button2</button>
+    <button id="btn3" onclick="changeColor()">Button3</button>
+</body>
+
+<script>
+    // Arrow function shouldn't be used if we expect 'this' to be dynamic but not static
+
+    function changeColor() { //regular function = 'this' is dynamic(refers to btn1/btn2/btn3)
+        console.log(this); //how /where function is invoked
+        this.style.backgroundColor = 'red'
+    }
+
+    let changeColor2 = () =>{ //arrow function --'this' is static
+        console.log(this); //this is pointing towards window object, but we want to change color of button
+        //so by using arrow function we cannot chage the color of button
+        this.style.backgroundColor = 'green';
+
+    }
+
+    document.getElementById('btn1').addEventListener('click',changeColor2)
+    document.getElementById('btn2').addEventListener('click',changeColor2)
+    document.getElementById('btn3').addEventListener('click',changeColor2)
+
+
+
+
+
+</script>
+</html>

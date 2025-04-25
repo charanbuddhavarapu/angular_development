@@ -1,0 +1,29 @@
+<script>
+
+    class Student {
+        firstName = 'Rohit';
+        lastName = 'Sharma';
+
+        fullName1() {
+            console.log(this.firstName, this.lastName);
+        }
+
+        fullName2 = () =>{
+            console.log(this.firstName, this.lastName);
+        }
+
+    }
+    let std = new Student();
+    std.fullName1();// regular, inside fullName1(), this = student
+    std.fullName2(); // this function is written in Student class so this refers to student
+    
+    setTimeout(std.fullName1, 2000) // this = window
+    // as this is a call back funtion, when a function is passed as an argument to another function
+    // the function that is passed is called call back function
+    // the function that takes another function as argument is called Higher Order Function
+
+    // here our expectation is that fullname1 will have this = Student, but here as we are calling 
+    //But as we are calling it as a call back function to setTimeout, it will have this = window
+    setTimeout(std.fullName2, 4000) // this = student
+
+</script>

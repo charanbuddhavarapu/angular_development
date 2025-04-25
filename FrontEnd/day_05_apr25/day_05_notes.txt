@@ -1,0 +1,20 @@
+1.we have some pre defined functions like
+ alert(), prompt(), confirm(),max(),min(),sqrt()
+2. User-defined functions: we have to write and use them
+
+-regular function - function dec and func. expression
+-in regular function - 'this' value is determined/decided on how/where the function is called
+        
+-whereas in 'ARROW' function doesn't care how the funtion is called
+-it used 'THIS' value from the outer scope
+
+//arrow functions generally are static, so it usually points out to window object, so in some cases regular functions are better than arrow funcions
+
+
+-----CALL BACK and HIGHER ORDER Functions------------------
+// the function that is passed is called call back function
+// the function that takes another function as argument is called Higher Order Function
+
+// If we call a regular function as a call back function then this problem of having this = window, inspite of having written 
+inside of a class
+// so for this reason we can invoke, or call arrow functions only as call back functions, as these arrow functions don't lose the this = student

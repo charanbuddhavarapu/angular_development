@@ -89,8 +89,8 @@ Arrow Function Benefits
 
 
 
-IIFE
+IIFE(Immediately invoked function expression)
 ====
 -used when we try to avoid polluting the global scope, 
 -The variables declared inside the IIFE are not visible outside its scope.
--closure
+-closure 

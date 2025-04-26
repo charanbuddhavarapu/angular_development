@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        let str = 'Rain in spain mainly stays in the plAin';
+
+         //   /regular-expression/
+        let res1 = str.match(/ain/) //matches only first occurence of ain
+        console.log(res1)
+
+        let res2 = str.match(/ain/g) // "/g flag" matches all the occurences of 'ain'
+        console.log(res2) //3 matches of 'ain'
+
+        let res3 = str.match(/ain/gi) // "/i" flag ignores the 
+        console.log(res3)
+
+
+        let str4 = 'Ram and Hari are 2 friends, One is 26 yrs old and other is 25 yrs old';
+        let res4 = str4.match(/[0-9]/g) //checks if any numbers are available and returns them
+        console.log(res4) //(5) ['2', '2', '6', '2', '5']
+
+
+        let res5 = str4.match(/[0-9]{1,2}/g); //size of numbers min 1 and max 2 of size
+        console.log(res5) //(3) ['2', '26', '25']
+
+        
+
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,12 @@
+we can use '' or "" for strings
+
+var a = ' It's a rainbow' -- Invalid strings
+var a  = ' It\'s a rainbow' -- Valid
+var a = "He is the 'man' " - Valid and vice-versa too
+
+-Strings can be created in 2 ways
+ 1. primitive string type : var a = 'hello'  --- string literals
+ 2. As an object :  let str3 = new String('hello') ---string objects
+
+ 99% of the time string literals are only used
+

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let str1 = 'hello';
+        let str2 = 'hello'; //string literals
+
+
+        let str3 = new String('hello') // string objects
+
+        console.log(typeof str1) //String
+        console.log(typeof str3) // Object
+
+        //eval() method cannot evaluate string objects can ONLY evaluate string literals
+
+        let str5 = '2+4+7+9';
+        console.log(eval(str5));
+
+        let str6 = new String('2+3+4');
+        console.log(eval(str6))  //String {'2+3+4'}
+
+        //string obj - > string literal
+        let str7 = str6.valueOf();
+        console.log(eval(str7));
+
+        // == is a loose comparison it does compare only 
+        // === strict equality , compares both type and value
+
+        console.log(str1 == str2) //true
+
+        console.log(str2 == str3) //True( as obj gets typecasted to literal when we compare a literal and object)
+
+        console.log(str3 == str6)
+
+
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

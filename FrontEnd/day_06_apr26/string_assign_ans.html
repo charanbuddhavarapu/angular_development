@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+
+    //1. WAP to reverse a string
+	//input:- 'sachin'
+	//output:- 'nihcas'
+    //.reverse() is used for array
+    str1 = 'sachin'
+    
+    revfun = (str) => {
+        console.log(typeof str.split('').reverse().join(''))
+        return str.split('').reverse().join('')
+        
+    }
+    console.log(revfun(str1)); //returns string nichas
+
+    /*2. WAP to reverse words
+	input:- 'This is javascript class'
+	output:- 'class javascript is this'*/
+
+    let str2 = 'This is javascript class'
+    console.log(str2.split(' ').reverse().join(' ')) // returns a string 'class javascript is this'
+
+    /*3. WAP to print the first non-repeated character in a string
+   input:- 'entertainment'
+   output:- r*/
+
+   let str3 = 'entertainment'
+   let res3 = ''
+   for(i=0;i<str3.length;i++){
+    if (str3.indexOf(str3[i]) === str3.lastIndexOf(str3[i])){
+        res3 = str3[i];
+        break;
+    }
+   }
+   console.log(res3); //r
+
+   /*4. WAP to print a string in title case
+	input:- 'this is javascript class'
+   output:- 'This Is Javascript Class'*/
+
+   let str4 = 'this is javascript class'
+   let arr4 = str4.split(' ')
+   
+   for(i=0;i<arr4.length;i++){
+     arr4[i] = arr4[i].charAt(0).toUpperCase() + arr4[i].slice(1,arr4[i].length);
+}
+   console.log(arr4.join(' ')) // This Is Javascript Class
+
+   /* 5. WAP to find longest word in a sentence
+	input:- 'this is javascript class'
+    output:- javascript*/
+
+    longestWord = (sentence) =>{
+        let arr5 = sentence.split(' ')
+        let temp_length = 0
+        let index = 0
+        for(i =0; i<arr5.length; i++){
+            if (arr5[i].length > temp_length){
+                temp_length = arr5[i].length
+                index = i
+            }
+        }
+        return arr5[index]
+    }
+    console.log(`Longest length word is ${longestWord(str4)}`)
+
+    /* 6. WAP to print Account number
+   input:- '12345678987'
+   output:- '12*******87' */
+    maskDigits =(input,beginVisible,endVisible) =>{
+        let char = '*'
+        let number_repeat = input.length -(endVisible + beginVisible)
+        
+        masked = char.repeat(number_repeat)
+        console.log(masked)
+        return input.slice(0,beginVisible) + masked + input.slice(masked.length+endVisible,input.length)
+    }
+    let input = '12345678987';
+    console.log(maskDigits(input,2,2))
+    
+    /*7. WAP to print Credit-card number
+   input:- '1111222233334444'
+   output:- '1111-2222-3333-4444'*/
+    
+    let cN= '1111222233334444'
+    console.log(cN.slice(0,4)+'-'+cN.slice(4,8)+'-'+cN.slice(8,12)+'-'+cN.slice(12,16))
+
+    /*Alternate approach using match, match(/./)-matches any single digit character, 
+    {1,4}- matches exacly 4 characters at a time - regex */
+    let parts = cN.match(/.{1,4}/g);
+
+    console.log(parts);// array - ['1111','2222','3333','4444']
+    console.log(`The printed credit card number is ${parts.join('-')}`)
+
+    /*8. WAP to check if 2 strings are anagram or not
+	'listen' - 'silent'    anagram(every char of str1 should be there in str2)*/
+
+    checkAnagram = (str1,str2) =>{
+        return str2.split('').sort().join('') === str1.split('').sort().join('');
+    }
+    console.log(checkAnagram('silent','listen'))
+
+    // will always return flase as in JS the array comparison is done based on memory location but not on value
+    //console.log([1,2,3]==[1,2,3]);
+
+    /*9. WAP to remove special character from a string
+   input:- 'hello@#hi&'
+   output:- 'hellohi'*/
+
+   //we can use regular expressions here, ^ - NOT
+   //matches anything within the regular expression, removes all other things
+   //here we are replacing anything that is not matching with that expression
+   removeSpecial = (word) =>{
+    return word.replace(/[^a-zA-Z0-9]/g,'');
+   }
+   console.log(removeSpecial('hello@#hi&'));
+
+   /*10. WAP to move all the special characters to the end of the string
+	input:- 'hello@#hi&'
+   output:- 'hellohi@#&'*/
+
+   moveSpecial = (word) =>{
+    let specialOnly = word.replace(/[a-zA-Z0-9]/g,'');
+    let wordOnly = word.replace(/[!@#$%^&*()]/g,'')
+    console.log(wordOnly,specialOnly)
+    return wordOnly+specialOnly
+   }
+
+   console.log(moveSpecial('hello@#hi&'))
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

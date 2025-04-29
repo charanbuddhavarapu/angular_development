@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        let students = ['charan', 'rohit','virat']
+
+        //to print all the items in an array
+
+        //1. For loop
+
+        for (let i =0; i<students.length;i++){
+            console.log(students[i])
+        }
+        console.log('======================================================')
+
+        //2. For in loop
+        //limitations: we can only move in forward direction, 
+        //2.we cannot start and stop at index of our wish
+        for(i in students){
+            console.log(students[i])
+        }
+        console.log("=========================================")
+        //3. For-of loop 
+        for(val of students){
+            console.log(val)
+        }
+
+
+        //4 foreach() method , it is a higher order function, so it takes a call back function
+        
+        students.forEach((val,index,arr) =>{
+            console.log(val,index,arr);
+        }) //charan, 0, ['charan','rohit','virat'] 
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

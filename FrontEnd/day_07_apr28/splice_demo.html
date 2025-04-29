@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let arr = [10,20,30,40,50];
+
+//splice() takes 3 arguments and returns the deleted element
+    /*  1. index
+        2. no.of items to delete
+        3. items to insert */
+// 1.we can only delete, 2. only insert, 3. both delete and insert
+        let res1 = arr.splice(2,1)
+        console.log(`deleted element is ${res1}`);
+        console.log(arr)
+// i want only to insert
+        arr.splice(2,0,99)  //as we don't want to delete anything, I insert 0 as second argument
+
+        console.log(arr);
+
+//both insert and delete
+        arr.splice(1,2,25,35)
+
+// tospliced() - doesn't change the original array
+        let newArr = arr.toSpliced(1,2)
+        console.log(arr,newArr)
+
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<script>
+    let employees = [
+    { 'eId': 101,'name':'charan','sal':500000,'gender':'male'},
+    { 'eId': 102,'name':'geeta','sal':6785,'gender':'female'},
+    { 'eId': 103,'name':'rohini','sal':56789,'gender':'female'},
+    { 'eId': 104,'name':'surya','sal':2345678,'gender':'male'},
+    
+    ]
+
+    //to find the first female employee in the list
+    //find , finds the first occurence of the object from the array
+    let first_female_emp = employees.find((emp) => emp.gender === 'female')
+    console.log(`Fiest female employee is : `,first_female_emp)
+
+
+    //find the index where the first female employee is present
+    let first_female_emp_ind = employees.findIndex((emp) => emp.gender === 'female')
+    console.log(`First female employee is of Index : `,first_female_emp_ind)
+
+
+    //print the last female employee index  in the list
+    let first_female_emp_last = employees.findLast((emp) => emp.gender === 'female')
+    console.log(`First female employee is of Index : `,first_female_emp_last)
+
+    //print the last female employee index  in the list
+    let first_female_emp_last_ind = employees.findLastIndex((emp) => emp.gender === 'female')
+    console.log(`First female employee is of Index : `,first_female_emp_last_ind)
+
+    // find all the female employees - (find all - filter())
+    let find_all_female = employees.filter((emp) => emp.gender === 'female')
+    console.log(`All female employee is of Index : `,find_all_female)
+
+    //
+    
+
+
+
+</script>
+<body>
+    
+</body>
+</html>

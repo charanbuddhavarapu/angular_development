@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+ /* Regular Method
+    let arr = [10,20,30,40,50]
+    //add 5 to each element
+    for(let i in arr){
+        arr[i]=arr[i]+5
+    }
+    console.log(arr) */
+
+    //MAP() is a higher order function, it takes in 3 parameters(val,index,arr)
+    //MAP() by default creates a new array object, no inplace is possible
+    let arr = [10,20,30,40,50]
+    let newArr = arr.map((val) => val+5)
+    console.log(`The new arrey is ${newArr}`)
+
+    let arr2 = [10,107,91,9,7,8,81,95,85,102,109]
+    //here the sorting happens text wise as sort() method considers each element as strings
+    console.log(arr2.sort()) //[10, 102, 107, 109, 7, 8, 81, 85, 9, 91, 95]
+
+
+    //how to perform numeric sort
+    arr2.sort((a,b) => a-b); //ascending order sort
+    console.log(arr2)
+    arr2.sort((a,b) => b-a); //descending sort
+    console.log(arr2)
+
+     //takes 10,107 as a,b and takes diff 10-107 is negative
+    //if its a negative number, then don't swap, else swap
+    //this swapping takes place many times and sort
+
+
+    
+
+</script>
+<body>
+    
+</body>
+</html>

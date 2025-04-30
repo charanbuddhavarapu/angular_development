@@ -1,0 +1,37 @@
+<script>
+    let arr1 = [10,20,30,40,50];
+
+    //find the sum of each number in the array
+
+    let sum = arr1.reduce((prev,curr) => {
+        console.log(prev,curr);
+        let sum = prev + curr;
+        return sum;
+    });
+    console.log(`sum is `,sum)
+
+
+    //reverse the string using reduce
+    let name = 'SACHIN';
+    //reduce method can only be used on array
+
+    let revName = name.split('').reduce((prev,curr) => {
+        console.log(prev,curr);
+        return curr + prev
+    });
+    console.log(revName)
+
+
+
+    //find character occurence
+    let str = 'entertainment'; // we need an object {}, so we need to pass a default value
+    let result = str.split('').reduce((charObj,char) => {
+        if(charObj[char]){
+            charObj[char] +=1;
+        }
+        else{ charObj[char] =1}
+        return charObj
+    },{})
+
+    console.log(result);
+</script>

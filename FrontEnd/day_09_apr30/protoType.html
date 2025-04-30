@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        class Student{
+            constructor(roll,name){
+                this.roll = roll;
+                this.name = name;
+                //this.clg_name = 'Eureka';
+                //this.clg_add = 'TN'
+            }
+            
+        }
+        //even though we don;t have them defined in constructor class, yet all the objects will be able to access those in prototype
+        // We are not maintining these per object
+        Student.prototype.clg_name = 'EUREKA';
+        Student.prototype.clg_add = 'TN';
+
+
+        let std1 = new Student(101,'rohit');
+        let std2 = new Student(102,'surya');
+        std1.clg_add = 'KT' //this will add a directc property 'clg_name'
+        console.log(std1.clg_add)
+        //every obj has 2 properties, so if we create n objects , we'll have 2n properties
+
+        //But say every student is from EUREKA, so we need not have clg_name as property which varies, so we can hard code in the constructor
+
+        //so, there will be few parametrs that will be same for everyone, so if we store them in constructor class,
+        //it will create more object properties, instead maintain those properties in PROTOTYPE
+
+        console.log(std1.__proto__.clg_add); //prints TN instead of KT
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

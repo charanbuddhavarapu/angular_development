@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+
+        let employees = [
+            { eId: 101, name: 'sanjay', sal: 5000, gender: 'male' },
+            { eId: 104, name: 'geeta', sal: 8000, gender: 'female' },
+            { eId: 103, name: 'sameer', sal: 7000, gender: 'male' },
+            { eId: 102, name: 'sita', sal: 9000, gender: 'female' },
+            { eId: 105, name: 'deepak', sal: 8000, gender: 'male' }
+        ];
+
+        //1. declare array of employees & sort them in ascending order (empId)
+        let emp_sorted_id = employees.sort((a,b) => a.eId - b.eId);
+        console.log("Ascending sort by id:");
+        console.log(emp_sorted_id);
+
+        //2. declare array of employees & sort them in ascending order by name.
+        let emp_sorted_name2 = employees.sort((a,b) => a.name-b.name ); // we can also use a.name <b.name
+        console.log('Name sort using logic')
+        console.log(emp_sorted_name2);
+
+
+        //2. declare array of employees & sort them in ascending order by name.
+        let emp_sorted_name = employees.sort((a,b) => a.name.localeCompare(b.name) );
+        console.log('Sort by name')
+        console.log(emp_sorted_name);
+
+
+        //3. declare array of employees & filter the employees whose sal>6000;
+        let emp_6000 = employees.filter((emp) => emp.sal>6000);
+        console.log('Find employees with salary >6000')
+        console.log(emp_6000);
+
+        //4. declare array of employees & increase sal of every employee by 500;
+
+        let emp_sal_inc = employees.map((emp) => {
+            emp.sal = emp.sal+500
+            return emp
+        });
+        console.log('Increment salary of every employee by 500')
+        console.log(emp_sal_inc)
+
+        //5. declare array of employees & add "comp:ibm" to every employee;
+        let emp_com = employees.forEach((emp) =>{
+            emp.comp = 'ibm';
+        });
+        console.log('Add company IBM to every employee')
+        console.log(emp_com)
+
+
+        /*6. convert array of letters to array of words
+		const inputArr = [ 
+        'b', 'a', 'k', 'e', '',
+        'c', 'a', 'k', 'e', '',
+        'e', 'a', 't'
+        ];
+output = ['bake','cake','eat'];*/
+
+        let inputArr = [ 'b', 'a', 'k', 'e', '', 'c', 'a', 'k', 'e', '','e', 'a', 't'];
+        let outArr = []
+        let newStr = ''
+        for(var char of inputArr){
+            if(char!=''){
+                newStr += char
+            }
+            else{ outArr.push(newStr)
+            newStr = ''}
+        }
+        outArr.push(newStr);
+        console.log('Convert the array of letters into words')
+        console.log(outArr)
+
+
+        //Alternate approach using the methods reduce()
+        const output = inputArr.reduce((acc,curr) =>{
+            if(curr != ''){
+                acc.word += curr
+            }
+            else{
+                acc.result.push(acc.word);
+                acc.word = ''
+             }
+            return acc 
+        },{result:[],word:''})
+        if(output.word){
+            output.result.push(output.word)
+        }
+        console.log('Using reduce() method')
+        console.log(output.result)
+
+//7. add Dept info for each employee
+    employees = [{eId: 101, name: "sanjay", sal: 5000, gender: "male" },
+				{ eId: 104, name: "reena", sal: 8000, gender: "female" }]
+	departments = [{ eId: 101, dept: "sales" },
+				{ eId: 104, dept: "marketing" }]
+
+        let add_dept = employees.map((emp) => {
+            const dept = departments.find(d => d.eId === emp.eId);
+
+            return {... emp, ...(dept ? dept:{})}
+        })
+        console.log(add_dept)
+
+
+    //10. WAP to print the occurance of each elements 
+    inputNum = [10,20,30,40,50,10,30,50]
+	//output = {10:2, 20:1, 30:2 , 40:1, 50:2}*/
+
+    let numfreq = {};
+    for(let num of inputNum){
+        if(numfreq[num]){
+            numfreq[num] +=1
+        }
+        else{numfreq[num]=1}
+    }
+    console.log('Print the number frequency')
+    console.log(numfreq)
+
+    /*9. intersection of 2 number arrays*/
+
+    let arr1 = [10,20,30,40,50,60,70,80];
+    let arr2 = [10,40,70,54,78];
+    let intersection = []
+
+    for(let num of arr1){
+        if(arr2.includes(num)){
+            intersection.push(num);
+        }
+    }
+    console.log(`The intersecting elements are ${intersection}`)
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

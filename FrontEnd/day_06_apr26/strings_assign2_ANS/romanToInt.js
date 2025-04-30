@@ -11,25 +11,24 @@
         for (let i of s) {
             console.log(i);
             if (stack.length === 0) {
-                stack.push(i);
-                console.log(stack);
-            } else if (dic[i] > dic[stack[stack.length - 1]]) {
+                stack.push(i); // any new element when stack is null
+               
+            } else if (dic[i] > dic[stack[stack.length - 1]]) {  //IX
                 let diff = dic[i] - dic[stack[stack.length - 1]];
                 total += diff;
                 stack.pop();
-                console.log("elif: ", stack);
                 continue;
-            } else if (dic[i] <= dic[stack[stack.length - 1]]) {
-                total += dic[stack[stack.length - 1]];
+            } else if (dic[i] <= dic[stack[stack.length - 1]]) { //XI
+                total += dic[stack[stack.length - 1]];  // only when new elem is introduced, we evaluate the prev elemnt in stack for total
                 stack.pop();
                 stack.push(i);
-                console.log(stack);
+                
             }
         }
 
         console.log(stack.length);
         if (stack.length === 1) {
-            return total + dic[stack[0]];
+            return total + dic[stack[0]]; // we can use this if say X is given , wna dit stays in the stack
         } else {
             return total;
         }

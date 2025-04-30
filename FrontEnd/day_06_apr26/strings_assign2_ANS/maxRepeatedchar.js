@@ -26,7 +26,7 @@
                 }
             }
         
-            return maxFreqChars;  // we return the array of max characters
+            return maxFreqChars;  // we are returning the array of max characters
         }
         
         console.log(findMaxFrequencyChar('hello worlddd'));

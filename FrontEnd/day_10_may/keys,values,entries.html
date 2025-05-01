@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        //Prototype properties are not a part of Object.keys(), Object.values()
+        let user = {name:'charan',age:25,add:'nellore'}
+        console.log(user);
+        let all_keys = Object.keys(user);
+        let all_values = Object.values(user);
+        let all_entries = Object.entries(user);
+
+        console.log(all_keys);
+        console.log(all_values);
+        console.log(all_entries);
+
+        let userObj = Object.fromEntries(all_entries); 
+        //if we want to convert from array[array] back to object again we use from entries
+        console.log(userObj);
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

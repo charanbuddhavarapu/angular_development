@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        //seal() - we cannot extend the number of properties, but we can reduce the number of existing properties
+        let obj1 = {a:10,color:'red'};
+        obj1.c = 30; //adding a new property - YES
+        delete obj1.color   //delete an existing property - YES
+        obj1.a = 15  //changing the value - yes
+        console.log(obj1);
+
+
+        let obj2 = {a:100,color:'red', d:{e:50}};
+
+        Object.preventExtensions(obj2);
+        obj2.c = 30; //adding a new property - NO
+
+        obj2.d.e = 55 // nested property value can be changed, 
+
+        delete obj2.color   //delete an existing property - YES
+        obj2.a = 15  //changing the value - YES
+        console.log(obj2)
+
+
+
+        //to check if an object is extensible or not
+        console.log(Object.isExtensible(obj1)) //False
+        console.log(Object.isExtensible(obj2)); //True
+
+
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

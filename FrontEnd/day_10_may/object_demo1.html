@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        let user = {name : 'sachin', age:35, add:'mumbai','last name' :'tendulkar'};
+
+        console.log(user.name); //sachin
+        console.log(user['age']) //35
+
+        //console.log(user.'last name') // gives an error as we cannot 
+        let x = 'add'
+        console.log(user.x) //undefined
+
+        console.log(user[x]) // it will evaluate user[x] = add and gives output as mumbai
+
+        for(key in user){
+            console.log(key + "=====" +user.key); // gives name === undefines, age === undefined as . property is checking for user.key
+
+        }
+
+        for(key in user){
+            console.log(key + "====" + user[key]); // gives name === sachin, add === mumbai ...
+
+        }
+
+
+        let car = {comp : 'Volvo', model :'xc90', color: 'Royal Blue'}
+
+        console.log(`The color of car is ${car.color}`);
+        let rangu = 'color'
+        console.log(`The modified color of car is ${car.rangu}`)
+        console.log(`The modified color of car is ${car[rangu]}`)
+
+
+        //how to find length of the object
+
+        let allKeys = Object.keys(car); //gives an array of all keys[comp,model,color]
+        console.log(allKeys.length) //3
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

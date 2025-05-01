@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        class Student {
+            constructor(name,roll_no,univ,course){
+                this.name = name;
+                this.roll_no = roll_no;
+                
+            }
+        }
+        Student.prototype.clg_Name = 'Eureka';
+        let std1 = new Student('charan',101);
+        let std2 = new Student('Harsha',102);
+
+        //hasOwnProperty() can obly acces direct properties, gives false if we access prototype properties
+        console.log(std1.hasOwnProperty('name'))//true
+        console.log(std1.hasOwnProperty('clg_Name')) //false
+
+
+        // "in" can access both direct and prototype properties
+        //in returns false if property is not in both direct and prototype properties
+        console.log('name' in std1)//true
+        console.log('clg_Name' in std1) //false
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

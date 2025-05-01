@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<script>
+    let obj1 = {a:10, b:20};
+    let obj2 = {c:30,d:40};
+    let obj3 = {e:50}
+
+    //if we want to copy all the properties of obj 2 and obj3 into obj1
+    //we use Object.assign(target, source1, source2,....)
+
+    Object.assign(obj1,obj2,obj3)
+    Object.assign(obj2,obj1,obj3)
+    console.log(obj1); //{a: 10, b: 20, c: 30, d: 40, e: 50}
+    console.log(obj2);  //{c: 30, d: 40, a: 10, b: 20, e: 50}
+
+
+   
+
+
+
+</script>
+<body>
+    
+</body>
+</html>

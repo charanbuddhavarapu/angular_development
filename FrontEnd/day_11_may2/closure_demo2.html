@@ -1,0 +1,33 @@
+<body>
+    <h2>Count is:: <span>0</span></h2>
+
+    <button onclick="increment()">Increment</button> <!--so here we can call increment( ) as a function-->
+    <button onclick="sayHi()">say Hi</button>
+
+    <script>
+        var count = 0;
+        function initializeCount(){
+            
+            var count = 0;
+            return function(){ //here 'function' has closure 
+                count++;
+                document.querySelector('span').innerHTML = count;
+            }
+        
+        }
+
+
+        var increment = initializeCount()
+        /* it is something like 
+        var increment = function(){
+                count++;
+                document.querySelector('span').innerHTML = count;
+            }*/
+
+        function sayHi(){
+            count++
+            console.log('Hiiii');
+            document.querySelector('span')
+        }
+    </script>
+</body>

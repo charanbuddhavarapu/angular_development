@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let account = {accNo:12345, accBal:5000}; //not encapsulated
+
+        console.log(account.accNo, account.accBal) //Read -yes
+
+        account.accBal = -5000;  //write - yes, so not protected
+        console.log(account.accBal);
+
+
+        function openAccount(initialBalance){
+            let accNo = 112233;
+            let accBal = initialBalance;
+
+            return {
+                displayInfo : function(){
+                    console.log(`AccNo :${accNo} has balance $${accBal}`);
+                },
+
+                deposit : function(amtToDeposit){
+                    accBal = accBal + amtToDeposit;
+                    console.log(`AccNo :${accNo} has balance $${accBal}`)
+                }
+            }
+        }
+        let encapsulatedAccount = openAccount(5000);
+        console.log(encapsulatedAccount)
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

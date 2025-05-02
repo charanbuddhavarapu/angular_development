@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    //closure is a scope like block and other scopes and can only be seen for innse fucntions.
+    //if that inner function is accessing outer function data
+
+    let a =10;
+    let b= 20;
+    function f1(){
+        let c = 30;
+
+        function f2(){
+            let d = 40;
+            console.log(a,b,d)
+        }
+        f2(); // this will have a closure scope if console.log(a,b,c,d) as f2 is trying to access c, which is in outer function scope
+        //f2() will not have closure scope if it is console.log(a,b,d) as f2 is not trying to access outer function f1's values.
+        console.dir(f2) // this shows which function has which scope
+    }
+    f1(); // it is an outer function, so it does not have closure scope
+    console.dir(f1) 
+
+</script>
+<body>
+    
+</body>
+</html>

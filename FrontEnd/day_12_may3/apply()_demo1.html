@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function add(a,b){
+            console.log(a+b+this);  //a=2,b=3, this.num -> this points to window, so undefined, 2=3=undefined = not a number NaN
+            console.log(a+b+this.num)
+        }
+        add(2,3);
+        let obj1 = {num:4};
+        add.call(obj1,2,3)  //call add() by setting this = obj1, 9
+        
+        //lets say we don't have 2,3 directly
+        let arr = [2,3]
+        add.call(obj1,arr) //undefines, as add() fn expects numbers, not smart enough to take array as input
+
+        //apply()
+        add.apply(obj1,arr) //1. inside add(), this = obj1, 2. arr elements are passed to add
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

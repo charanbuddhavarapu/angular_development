@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let obj1 ={ 
+            a:10,
+            b:20,
+            add:function(){
+                console.log(this.a + this.b);
+            }
+        }
+        obj1.add();
+    
+        let obj2 ={
+            a:100,
+            b:100,
+            c:500
+        }
+        //obj2.add(); //it wont work as obj2.add is not a function
+    
+        //obj1.add.call(obj2); 
+        //means obj1 has add fn, we are trying to call add fn from obj1, but make sure obj2 value
+        //invoke add() fn from obj1, make sure inside add() , this is set to obj2 ; this = obj2
+        console.log(obj1.add.call(obj2)); //adds a;100, b:100 and gives 200 as op
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

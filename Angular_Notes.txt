@@ -1,0 +1,2 @@
+
+ng generate <componentName> -- creates a component

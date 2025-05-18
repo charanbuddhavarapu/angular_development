@@ -1,0 +1,104 @@
+<h3>databinding-assign works!!!!!</h3>
+
+<!--1. Have a paragraph & a toggle button, on click of the button control the visibility(Show/Hide) of the paragraph-->
+
+<div style = "color:rgb(179, 109, 23)" class="paraToggle" >
+
+    <!--Will create a button with terenary operator and click button-->
+    <button (click)="onclick()" type="button" class="btn btn-danger">
+        {{  ShowParagraph? "Show Paragraph": "Close Paragraph"}}
+    </button>
+
+    <!--I made a condition here , default will be hidden-->
+    
+        <div [hidden] = "isvisible" class="bg-white shadow-sm p-3" >
+            <h4>Paragraph</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, adipisci voluptatem voluptas illum molestiae deleniti odit, quisquam natus beatae quasi accusantium hic obcaecati est quas magnam aut nemo dolorum pariatur?</p>
+        </div>
+    
+</div>
+<br><br><br>
+
+<!--2. Create a text-area with maxLength=100, as the user keeps typing display updated Remaining characters.-->
+<!--ngModel used 2 way binding, userInput both reads and writes-->
+<!--(input) is an event binding, and it just triggers the updateRemchar()-->
+
+<h3>Character Counter</h3>
+
+<textarea 
+  [(ngModel)]="userInput"           
+  maxlength="100" 
+  (input)="updateRemainingChars()"  
+  rows="4"                          
+  cols="50"
+  placeholder="Type something... (max 100 characters)">
+</textarea>
+
+<p>Remaining characters: {{ remainingChars }}</p>
+
+<br>
+<h3>Drowp Drown of States</h3>
+
+<!-- 3. Create dropdown with state names, when user changes dropdown value, print the selected dropdown value in a paragraph-->
+<!--[value]="state" property binding-->
+<!-- Dropdown for selecting a state -->
+<select [(ngModel)]="selectedState">
+  <option value="">-- Select a State --</option>
+  <option value="New York">New York</option>
+  <option value="California">California</option>
+  <option value="T">T</option>
+  <option value="Florida">Florida</option>
+  <option value="Louisiana">Louisiana</option>
+</select>
+
+<!-- Display the selected value -->
+ <p [hidden]="!selectedState">You selected: {{ selectedState }}</p>
+
+
+<!-- <p *ngIf="selectedState">You selected: {{ selectedState }}</p>-->
+
+
+  <!--4. have 2 inputBoxes, and a dropdown(+,-,*,/) and perform arithmetic operations-->
+  <h3>Calculator </h3>
+  <input type="number" [(ngModel)]="num1" placeholder="Enter first number">
+  <select [(ngModel)]="selectedOperator">
+    <option value="">Select Operator</option>
+    <option *ngFor = "let op of Operators" [value]="op">
+      {{op}}
+    </option>
+  </select>
+  <input type="number" [(ngModel)]="num2" placeholder="Enter Second Number">
+<br>
+  <button (click)="calculate()">Calculate</button>
+
+  <p *ngIf="result !== null">Result: {{ result }}</p>
+
+  <br><br>
+
+  <!--5. create a input box, toggle the type of that input box to (text/password)-->
+  <h3>Password Hiding</h3>
+  <input [type]="inputType" placeholder="Enter the pasword">
+  <button (click)="togglePassword()">{{inputType === 'password' ? "Show Password" : "Hide Password"}}</button>
+ 
+  <br><br><br>
+
+<!--6. create a counter example with 3 controls(increment,decrement,reset)-->
+<!--We can also  make just the placeholder get diaplayed on load if we can add condition to value,-->
+<input type="text" [value]="res" [placeholder]="placeholder">
+<br>
+<button (click)="increment()" width="200" height="200">Increment</button>
+<button (click)="decrement()">Decrement</button>
+<button (click)="reset()">Reset</button>
+<br><br><br>
+
+<!--7. Change the theme-->
+<!-- Toggle Theme Button -->
+<button (click)="toggleTheme()" class="btn btn-secondary">
+  Switch to {{ isDarkMode ? 'Light' : 'Dark' }} Mode
+</button>
+
+<!-- Example Content -->
+<div [ngClass]="isDarkMode ? 'dark-mode' : 'light-mode'">
+  <h2>Theme Change</h2>
+  <p>We are turning Dark -> Light mode and viceversa</p>
+</div>

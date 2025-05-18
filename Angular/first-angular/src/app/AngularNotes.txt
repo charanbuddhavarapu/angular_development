@@ -1,0 +1,69 @@
+------------------May 16-----------------------------------------------------
+
+Inline styling - per element
+Internal styling - per html page
+StyleUrl : is the most commonly used style, for every component there is a separate file is created
+            and is linked to that particular component file
+
+
+View Encapsulation
+******************
+View encapsulation defines whether the template and styles defined within the component can affect the whole application or vice versa. 
+
+Angular provides below encapsulation strategies:
+1. Emulated (default) - styles from main HTML(index.html) propagates to the component. 
+					Styles defined in component are scoped to that component only.
+
+2. None - styles from the component propagate back to the main HTML and therefore are   visible to all components on the page. 
+Be careful with apps that have None components in the application. 
+ 
+3. shadowDOM - Use shadowDOM for style encapsulation (only component css will be applied)
+			   1. CSS won't come from main HTML to Component.
+			   2. css will be provided from parent to child component.
+
+ex:- encapsulation: ViewEncapsulation.Emulated(default) 
+	 encapsulation: ViewEncapsulation.ShadowDom
+	 encapsulation: ViewEncapsulation.None
+	 
+
+Emulated: index HTML--->parent Component (yes)
+		  index HTML-->child component (yes)
+		  Parent(Emulated) --> child(Emulated) (No)
+ShadowDom: index HTML--->parent Component(shadowDOM) (No)
+		   index HTML-->child component (No)
+		   Parent (shadowDOM) --> child(Emulated) (Yes)		   
+		   Parent (shadowDOM) --> child(ShadowDom) (No)		   
+None: index<--->parent Component(None)<-->child component
+
+View Encapsulation : Styles of 1 component do not effect the styles of other component, this is because of view encapsulation
+view encapsulation - emulated, shadowDOM, None - 3 types
+emulated V.E - default setup 
+
+*******************Directives***************** 
+
+Directives
+**********
+-Directives Enhance the power of HTML elements.
+-Directives add additional behavior to elements in Angular applications.
+-Before Angular 17  (*ngIf , *ngSwitchCase, *ngFor)
+-After angular-17  (@if , @else , @switch , @case , @default , @for, @empty , @let)
+
+1. Structural Directives : 
+	Directive which changes the layout/structure of the DOM.
+	* is used with structural directives.
+	only 1 structural directive can be applied to an element.
+
+2. Attribute Directives : ([ngStyle],[ngClass])
+	Directive which changes behaviour/appearance of the DOM element.
+	[ ] is used with attribute direcives.
+	many attribute directives can be applied to an element.
+
+Note : Compononent can also be considered as directive, because it powers up the html by creating Custom Element, but the directives cannot be considered as component because it does not have a View (template and templateUrl cannot be used in directives)
+
+
+====================================================================================================================
+ 
+May 17:
+
+Table and Card View - table-card components
+Difference between data list and dropdown

@@ -1,0 +1,101 @@
+<h3 class="text-center">Let's Learn Directives</h3>
+<hr />
+
+<div class="border p-2 m-2">
+  <h4>If Else (Before Angular 17)</h4>
+  <div>Change num value and check if it is even or not</div>
+  <input type="number" [(ngModel)]="num" />
+
+  <div *ngIf="num%2==0">{{num}} is Even</div>
+  <div *ngIf="num%2!==0">{{num}} is Odd</div>
+</div>
+
+<div class="border p-2 m-2">
+  <h4>If Else (After Angular 17)</h4>
+  <div>Change num value and check if it is even or not</div>
+  <input type="number" [(ngModel)]="num" />
+
+  @if(num%2==0){
+    <div>{{num}} is Even</div>
+  }@else {
+    <div>{{num}} is Odd</div>
+  }
+</div>
+
+<div class="border p-2 m-2">
+  <h4>Switch Case</h4>
+  <div>Change dayNum value to get day name</div>
+  <input type="number" [(ngModel)]="dayNum" />
+  @switch (dayNum) {
+    @case (1) { <h4>Monday</h4> }
+    @case (2) { <h4>Tuesday</h4> }
+    @case (3) { <h4>Wednesday</h4> }
+    @case (4) { <h4>Thursday</h4> }
+    @case (5) { <h4>Friday</h4> }
+    @case (6) { <h4>Saturday</h4> }
+    @case (7) { <h4>Sunday</h4> }
+    @default { <h4>Not a Valid number</h4>
+  }
+}
+</div>
+
+<div class="border p-2 m-2">
+  <h4>Display States in a dropdown using ForLoop</h4>
+  <select>
+    @for(state of stateNames;track $index){
+      <option>{{state}}</option>
+    }
+  </select>
+</div>
+
+<!--Data List - A Dropdown with a search functionality-->
+
+<div class="border p-2 m-2">
+    <h4>Country Data List</h4>
+    <!--list and id should match, only then you get the result-->
+    <input list="countries_List">
+    <datalist id="countries_List">
+        @for(country of Country_list;track $index){
+            <option>{{country}}</option>
+        }
+    </datalist>
+</div>
+
+<div class="border p-2 m-2">
+  <h4>Country Data List</h4>
+  
+  <!-- Input with datalist -->
+  <input list="countriesList">
+
+  <!-- Datalist with *ngFor -->
+  <datalist id="countriesList">
+    <option *ngFor="let country of Country_list" [value]="country"></option>
+  </datalist>
+</div>
+
+<table class="table table table-striped">
+    <thead>
+        <tr>
+            <th>S. No</th>
+            <th>empId</th> <!--These are coloumns-->
+            <th>Name</th>
+            <th>is First</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(emp of employees;track $index){
+            <tr>
+                <td>{{$index+1}}</td>
+                <td>{{emp.eId}}</td>
+                <td>{{emp.name}}</td>
+                <td>{{$first}}</td>
+                <!--$first,$last,$even,$odd are also present-->
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!--Assignment:
+==========
+-Declare an array of users, display users in card & table format. 
+ add a button/switch to toggle between table view and card view.-->

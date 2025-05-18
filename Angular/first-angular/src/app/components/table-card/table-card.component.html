@@ -1,0 +1,57 @@
+<p>table-card works!</p>
+
+<h3 class="text-center">User List</h3>
+
+<div class="button-switch text-center mt-3">
+    <button class="btn btn-primary text-center" (click)="flag = !flag">Card/Table</button>
+</div>
+
+
+
+@if (flag) {
+  <table class="table table-bordered table-striped mt-3">
+    <thead>
+      <tr>
+        <th>Emp Id</th>
+        <th>Name</th>
+        <th>Salary</th>
+        <th>Gender</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (emp of employees; track emp.eId) {
+        <tr>
+          <td>{{ emp.eId }}</td>
+          <td>{{ emp.name }}</td>
+          <td>{{ emp.sal }}</td>
+          <td>{{ emp.gender }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+} @else {
+    <div class="container mt-3">
+        <div class="row">
+            @for(emp of employees; track emp.eId){
+                <div class="col-sm-3">
+                    <div class="card border rounded-3 shadow" >
+                        @if(emp.gender == "female" ){
+                            <img src="/female.jpeg" class="card-img-top" alt="...">
+                        }
+                        @else
+                        { 
+                            <img src="/male.jpeg" class="card-img-top" alt="...">
+                        }
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-centre" >{{emp.name}}</h5>
+                        <p class="card-text">Employee ID: {{emp.eId}}</p>
+                        <p class="card-text">Salary: {{emp.sal}}</p>
+                        <p class="card-text">Gender: {{emp.gender}}</p>
+                        <a href="#" class="btn btn-primary">Employee Profile</a>
+                    </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}

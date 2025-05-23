@@ -1,0 +1,8 @@
+<p>assign-employee-crud works!</p>
+
+<div class="container mt-4">
+    <app-employee-add (addEmpEmit) = "addEmpFromForm($event)"> </app-employee-add>
+    <app-employee-table [employees] = "employees"
+                        (deleteId)="deleteFromParent($event)"></app-employee-table>
+    
+</div>

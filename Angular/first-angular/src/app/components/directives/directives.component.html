@@ -16,9 +16,9 @@
   <input type="number" [(ngModel)]="num" />
 
   @if(num%2==0){
-    <div>{{num}} is Even</div>
+  <div>{{num}} is Even</div>
   }@else {
-    <div>{{num}} is Odd</div>
+  <div>{{num}} is Odd</div>
   }
 </div>
 
@@ -27,75 +27,121 @@
   <div>Change dayNum value to get day name</div>
   <input type="number" [(ngModel)]="dayNum" />
   @switch (dayNum) {
-    @case (1) { <h4>Monday</h4> }
-    @case (2) { <h4>Tuesday</h4> }
-    @case (3) { <h4>Wednesday</h4> }
-    @case (4) { <h4>Thursday</h4> }
-    @case (5) { <h4>Friday</h4> }
-    @case (6) { <h4>Saturday</h4> }
-    @case (7) { <h4>Sunday</h4> }
-    @default { <h4>Not a Valid number</h4>
+  @case (1) { <h4>Monday</h4> }
+  @case (2) { <h4>Tuesday</h4> }
+  @case (3) { <h4>Wednesday</h4> }
+  @case (4) { <h4>Thursday</h4> }
+  @case (5) { <h4>Friday</h4> }
+  @case (6) { <h4>Saturday</h4> }
+  @case (7) { <h4>Sunday</h4> }
+  @default { <h4>Not a Valid number</h4>
   }
-}
+  }
 </div>
 
 <div class="border p-2 m-2">
   <h4>Display States in a dropdown using ForLoop</h4>
   <select>
     @for(state of stateNames;track $index){
-      <option>{{state}}</option>
+    <option>{{state}}</option>
     }
   </select>
 </div>
 
-<!--Data List - A Dropdown with a search functionality-->
-
 <div class="border p-2 m-2">
-    <h4>Country Data List</h4>
-    <!--list and id should match, only then you get the result-->
-    <input list="countries_List">
-    <datalist id="countries_List">
-        @for(country of Country_list;track $index){
-            <option>{{country}}</option>
-        }
-    </datalist>
+  <h4>Country List Dropdown</h4>
+  <select [(ngModel)]="selectedCountry">
+    @for(country of country_list;track $index){
+    <option>{{country}}</option>
+    }
+  </select>
+  <div>Selected Country: {{selectedCountry}}</div>
 </div>
 
 <div class="border p-2 m-2">
-  <h4>Country Data List</h4>
-  
-  <!-- Input with datalist -->
-  <input list="countriesList">
-
-  <!-- Datalist with *ngFor -->
-  <datalist id="countriesList">
-    <option *ngFor="let country of Country_list" [value]="country"></option>
+  <h4>Country DataList</h4>
+  <input list="countries">
+  <datalist id="countries">
+    @for(country of country_list;track $index){
+    <option>{{country}}</option>
+    }
   </datalist>
 </div>
 
-<table class="table table table-striped">
+<div class="border p-2 m-2">
+  <h4>Employees Table</h4>
+
+  <table class="table table-bordered table-striped">
     <thead>
-        <tr>
-            <th>S. No</th>
-            <th>empId</th> <!--These are coloumns-->
-            <th>Name</th>
-            <th>is First</th>
-        </tr>
+      <tr>
+        <th>SL No.</th>
+        <th>Emp Id</th>
+        <th>Name</th>
+        <th>Salary</th>
+        <th>Gender</th>
+        <th>Is First</th>
+        <th>Is Last</th>
+        <th>Is Even</th>
+        <th>Is Odd</th>
+      </tr>
     </thead>
     <tbody>
-        @for(emp of employees;track $index){
-            <tr>
-                <td>{{$index+1}}</td>
-                <td>{{emp.eId}}</td>
-                <td>{{emp.name}}</td>
-                <td>{{$first}}</td>
-                <!--$first,$last,$even,$odd are also present-->
-            </tr>
-        }
+      @for (emp of employees; track emp.eId) {
+      <tr>
+        <td>{{$index+1}}</td>
+        <td>{{emp.eId}}</td>
+        <td>{{emp.name}}</td>
+        <td>{{emp.sal}}</td>
+        <td>{{emp.gender}}</td>
+        <td>{{$first}}</td>
+        <td>{{$last}}</td>
+        <td>{{$even}}</td>
+        <td>{{$odd}}</td>
+      </tr>
+      }
     </tbody>
-</table>
+  </table>
+</div>
 
-<!--Assignment:
-==========
--Declare an array of users, display users in card & table format. 
- add a button/switch to toggle between table view and card view.-->
+<div class="border p-2 m-2">
+  <div>Lets understand ngStyle</div>
+  <input type="number" [(ngModel)]="num" />
+  <p [style.color]="num % 2 == 0 ? 'blue' : 'red'"> Add Color dynamically</p>
+  <p [style.fontSize.px]='num % 2 == 0 ? 48 : 24'> Add style with unit </p>
+  <p [style.background-color]="num % 2 == 0 ?'green':'blue' "> Add style conditionally </p>
+  <p [ngStyle]="num % 2 == 0 ? myStyle1 : myStyle2"> NgStyle for multiple values </p>
+  <p [ngStyle]="myFunction()"> NgStyle for multiple values </p>
+</div>
+
+<div class="border p-2 m-2">
+  <div>Lets understand ngClass</div>
+  <input type="number" [(ngModel)]="num" />
+  <button [ngClass]="['btn', num%2==0 ? 'btn-success':'btn-danger']">Test Button</button>
+</div>
+
+
+<div class="border p-2 m-2">
+  <div>Lets understand ng-template</div>
+  <div *ngIf="num%2==0; else oddBlock">
+    {{num}} is Even
+  </div>
+  <ng-template #oddBlock>
+    {{num}} is odd
+  </ng-template>
+</div>
+
+<div class="border p-2 m-2">
+  <div>Lets understand ng-container</div>
+  <ng-container *ngfor="">
+    <div *ngIf="num%2==0">
+      {{num}} is Even
+    </div>
+  </ng-container>
+</div>
+
+<div class="border p-2 m-2">
+  <div>Lets understand NUmber Only Custom Directive</div>
+  <input numberonly placeholder="enter number & text to see the diff" />  
+
+  <h3 appHighlight>This element hosts appHighlight directive</h3>
+</div>

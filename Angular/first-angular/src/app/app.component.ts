@@ -9,12 +9,19 @@ import { DBdemoComponent } from './components/dbdemo/dbdemo.component';
 import { DirectivesComponent } from './components/directives/directives.component';
 import { TableCardComponent } from './components/table-card/table-card.component';
 import { ProductsComponent } from './components/products/products.component';
+import { Demo1Component } from './components/demo1/demo1.component';
+import { EmployeeCRUDComponent } from './components/employee-crud/employee-crud.component';
+import { PipesComponent } from './components/pipes/pipes.component';
+import { PipesAssignmentComponent } from './components/pipes-assignment/pipes-assignment.component';
+import { ParentComponent } from './components/parent/parent.component';
+import { AssignEmployeeCRUDComponent } from './components/assign-employee-crud/assign-employee-crud.component';
+
 
 
 @Component({
   selector: 'app-root',
   imports: [NavbarComponent,CategoriesComponent,CarouselComponent,FooterComponent,BodyComponent,DatabindingAssignComponent,DBdemoComponent
-    ,DirectivesComponent,TableCardComponent,ProductsComponent],
+    ,DirectivesComponent,TableCardComponent,ProductsComponent,Demo1Component,EmployeeCRUDComponent,PipesComponent,PipesAssignmentComponent,ParentComponent,AssignEmployeeCRUDComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

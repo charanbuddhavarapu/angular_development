@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import productData from './products_data';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
+import {faStar} from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-products',
@@ -18,12 +19,13 @@ import { FormsModule } from '@angular/forms';
 //
 export class ProductsComponent {
   productsArr = productData;                         //  Base array
-  sortedProductArray = [...this.productsArr];        // To store sorted array - Sorted array
+  sortedProductArray = [...this.productsArr];        // To store sorted array - Sorted array, shallowcopy so that we can allow changes on this without the base array getting affected
   filteredArray = [...this.productsArr];             // Filtered version that we show on the UI
 
   p: number = 1;
   searchTerm: string = '';
   sortOrder: 'asc' | 'desc' = 'asc';
+  faStar = faStar;
 
   // Called on every search input change
   getfilteredProducts() {
@@ -38,12 +40,12 @@ export class ProductsComponent {
     this.sortOrder = order;
     console.log("Sorting in order:", order);
 
-    const sorted = [...this.filteredArray]; // Sort only filtered products
+    const sorted = [...this.filteredArray]; // we use this to Sort only filtered products
     sorted.sort((a, b) =>
       order === 'asc' ? a.price - b.price : b.price - a.price
     );
 
     this.sortedProductArray = sorted;
-    this.getfilteredProducts();  // ✅ Re-filter from sorted data
+    this.getfilteredProducts();  // we do this inorder to refilter the data
   };
 }

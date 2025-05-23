@@ -1,0 +1,97 @@
+<p>pipes-assignment works!</p>
+
+<hr>
+
+<h3> ORDINAL </h3>
+<p>1 -> {{ 1 | ordinal }}</p>      
+<p>2 -> {{ 2 | ordinal }}</p>      
+<p>3 -> {{ 3 | ordinal }}</p>     
+<p>4 -> {{ 4 | ordinal }}</p>     
+<p>21 - > {{ 21 | ordinal }}</p>     
+<p>37 -> {{37 | ordinal}}</p>
+
+<hr>
+<h3>Number to Roman</h3>
+<p> 9 : {{9 | roman}}</p>
+<p>11 : {{11 | roman}}</p>
+<p>89 : {{89 | roman}}</p>
+<p>167 : {{167 | roman}}</p>
+
+<h3> BirthDay to Age Pipe</h3> <!--I'm using YYYY-MM-DD-->
+<p> "08-29-1999" -> {{"08-29-1999" | birthdayToYears}}</p>
+<p> "29-02-2023" -> {{"2-02-1999" | birthdayToYears}}</p>
+<p> "31-12-1990" -> {{"31-12-1999" | birthdayToYears}}</p>
+
+
+
+<h3 class="text-center">Employee List with Salutations</h3>
+
+
+
+    <table class="table table-bordered table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>S.NO</th>
+          <th>Employee ID</th>
+          <th>Name</th>
+          <th>Salary</th>
+          <th>Gender</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        @for(emp of employees; track $index) {
+          <tr>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ emp.eId }}</td>
+            <td>{{ emp.name | salutation:emp.gender}}</td>
+            <td>{{ emp.sal }}</td>
+            <td>{{ emp.gender }}</td>
+            
+          </tr>
+        }
+      </tbody>
+    </table>
+
+
+
+    <h3>Employee search</h3>
+    <div class="container mt-4">
+
+  <input
+    type="text"
+    [(ngModel)]="searchTerm"
+    class="form-control mb-3"
+    placeholder="Search employees by name, ID, salary, or gender"
+  />
+
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>#</th>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Salary</th>
+        <th>Gender</th>
+      </tr>
+    </thead>
+    <tbody>
+       @for(emp of employees | searchFilter:searchTerm; track $index) {
+        <tr>
+          <td>{{ $index + 1 }}</td>
+          <td>{{ emp.eId }}</td>
+          <td>{{ emp.name }}</td>
+          <td>{{ emp.sal }}</td>
+          <td>{{ emp.gender }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+
+
+
+
+
+

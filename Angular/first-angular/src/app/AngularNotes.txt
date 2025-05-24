@@ -392,4 +392,289 @@ Child to parent
    }
 
 
+==============================================================================================================
+May 23rd 
+
+
+component lifecycle hooks/method 
+================================
+constructor - ngOnChanges - ngOnInit  - ngDoCheck - ngAfterContentInit - 
+ngAfterContentChecked - ngAfterViewInit - ngAfterViewChecked - ngOnDestroy. (1+8)
+
+* These methods get automatically invoked, when a component is created
+* Regular Function - we have to invoked
+* Life Cycle methods - automatic invoke, the order is already defined(just as our human life cycle is pre defined)
+
+* Constructore is not a life cycle method , it is from JS not from Angular(so 1 + 8 )
+
+* When ngOnDestroy is called - > component will be deleted from the DOM soon, it will no loger be available
+
+* Whenever you want to implement lifecycle methods ( They are interfaces ), so implement interface.
+* WIthout implementing the interface also we can write ngOnInit() function, and others as well.
+afterNextRender(() => {
+});
+
+ 
+3 steps to use lifecycle HOOKS, they are:
+========================================
+1. Import Hook interfaces from '@angular/core' library
+   ex:- import {onChanges} from '@angular/core'
+
+2. Declare that component/directive and implement lifecycle hook interface
+   ex: class ChildComponent implements onChanges
+		{
+		}
+3. write the hook method and define the functionality of that method.
+		ex: class ChildComponent implements onChange
+		{
+			ngOnChanges()
+			{
+				//logic
+			}
+		}	
+ex- ngOnChanges() is a method from 'OnChanges' interface
+
+
+The hooks/lifecycle methods are executed in this order:
+--------------------------------------------------------
+constructor()
+-This is invoked when Angular creates a component or directive by calling new on the class.
+-We use constructor to Initialize class variables,dependency Injection.
+   a:number ->declare, in constructor function a=10->initialization
+- In angular we don't use new key word to create object of a class, rather we use private ele:ElementRef - > dependency injection
+-No Business Logic should be written in constructor.
+
+ngOnChanges()
+-ngOnchanges() will not be invoked if the component doesn't have inputs:[]
+   
+-Invoked every time there is a change in one of the input properties of the component.
+* If a child component wants to keep an eye on the inputs[] properties, then we use ngOnChanges
+-inside ngOnchanges() we can access previous and current value of a variable.
+ * We can also capture what was the current value and prev value of the variable we used in inputs[].
+
+
+ngOnInit()
+-Invoked for every component when a component gets Initialized.
+-This hook is called only once, after the first ngOnChanges.not after every ngOnchanges()
+-Time Consuming Logic goes here. Ex:- API Call
+ * To hit a URL and fetch the data, for this purpose we use ngOnInit().
+
+
+ngDoCheck()
+-Invoked when the change detector of the given component is invoked. 
+   * Lets say our req is to know whenever the variable of component changes, the parent component should be notified, then ngDoCheck() will be called.
+-It allows us to implement our own change detection algorithm for the given component.
+-useful to detect and act upon the changes that can not be detected by Angular on its own.
+-Due to default behavior of angular change detection, ngOnChanges can't detect if someone changes a property of an object or push an item into array. So ngDoCheck comes to recuse.
+-Detect deep changes like a property change in object or item is pushed into array even without reference change.
+-By using ngDoCheck and KeyValueDiffer, we can monitor changes in complex objects that might not be caught by Angular's default change detection mechanism.
+
+ngDoCheck() - will force the below 4 methods to be called.
+
+ngAfterContentInit()
+-Invoked after Angular performs any content projection into the components view 
+-Runs only once after the first ngDoCheck(), if ngDoCkeck() is called 100 times also, ngAfterContentInit() is called only once.
+-Use ngAfterContentInit to call something once after all of the content has been initialized
+
+
+ngAfterContentChecked() 
+-Invoked each time the content of the given component has been checked by the change detection mechanism of Angular.
+-is called after ngAfterContentInit for the first time.
+-is called after every subsequent ngDoCheck
+
+
+ngAfterViewInit() 
+- Best place to check if the component is ready for DOM manipulation.
+- After the view is completely initialized , then this function is called.
+-Invoked when the component's view has been fully initialized.
+-this is the best place for DOM manipulation. it is used for DOM manipulation logic.
+- lets say on page load itself, for an input box the focus(| blinking), we can use DOM manipulation logic for it.
+-is called once after ngAfterContentChecked.
+-ngAfterViewInit() is called after all child components are initialized and checked.
+
+
+ngAfterViewChecked() 
+-is called after every subsequent ngAfterContentChecked.
+ 
+ 
+ngOnDestroy()
+-This method is invoked just before Angular destroys the component.
+-Clean up code.  ex:- clearInterval(),clearTimeout(); unsubscribe();
+
+- we write the cleanup logic just like finally in java.
+
+
+N.p-ngDoCheck and ngOnChanges should not be implemented together on the same component
+
+
+
+=================================================================================================================
+May 24
+
+Angular Services
+****************
+- share logic/data across components.
+- code Reusability
+	(write once use that in multiple components)
+- Lazily instantiated
+	(Angular only instantiates a service when a component depends on it)
+- Singletons
+	(Each component dependent on a service gets a reference to the single instance generated by the service factory.only one instance of the service gets created through-out the application)
+
+-create a service using angular CLI
+ ng generate service myService
+		
+
+
+steps to create and use service
+--------------------------------
+1. create a service (ng g s service-name)
+	a. class with set of methods and properties.
+	b. decorate that class with @injectable decorator
+
+* Injectable, directive, pipes are classes with @Injectable decorator, @directive Decorator, @Pipe Decorator
+	 
+2. use a service in component
+   a. import service to component file
+   b. create a referrence variable for that service(inside constructor) / Dependency Injection
+   c. using the referrence variale make use of methos and properties from service
+   
+	class MathComponent{
+		constructor(private mathObj : MathService){
+			
+		}
+	}
+			(OR)
+	class MathComponent{
+		constructor(){
+			this.mathObj = inject(MathService);
+		}
+	}
+ 
+ 
+Dependency injection 
+=====================
+-Dependency injection (DI), is an application design pattern. 
+-Dependency Injection framework provides declared/mentioned dependencies to a class when that class is instantiated.   
+
+constructor(private myHttp:HttpClient){}
+	OR
+constructor(){
+	 this.myhttp = inject(HttpClient);
+}
+
+
+
+Assignment
+==========
+1. create an EmployeeService
+	Service should have 1 variable.  ex: employees = [ {}, {}, {} {}]   
+	Service should have 3 methods.   ex: getAllEmployees(), getMaleEmployees(), getFemaleEmployees()
+2. inject that service in EmployeeComponent
+3. Display List of Employees in a table / Card
+   have a dropdown with 3 values- allEmployees , maleEmployees , femaleEmployees
+   based on the dropdown value selected, employee data should be shown.
+
+
+
+
+Communicating with backend services using HTTP
+==============================================
+-frontEnd applications need to communicate with a server to Fetch or Send data.
+-Using HttpClient an angular application can communicate with server.
+
+
+HTTP Methods
+============
+GET - Retrieve a resource/Retrieve data from DB
+	  search
+	  
+POST - to send data to server  ( sign up ) 
+	   create a resource/create a new record in DB
+	   to fetch data securly    (send params in body not in URL)
+
+PUT - update data/create or replace a resource  
+	    
+PATCH - update/modify a resource
+		update password/update mobile number 
+
+DELETE - remove a resource/delete a record from DB 
+		 Delete naukri account
+		 
+
+PUT vs POST
+-----------
+-PUT for UPDATE operations, POST for CREATE operations.
+-PUT is idempotent, where POST is non-idempotent.
+-Idempotence(producing the same result even if the same request is made multiple times)
+-(PUT)if you retry a request N times, that should be equivalent to single request modification.
+-(POST)if you retry the request N times, you will end up having N resources with N different URIs created on server.
+-Use PUT when you want to modify a singular resource which is already a part of resources collection.
+-Use POST when you want to add a child resource under resources collection.
+
+
+Idempotent
+----------
+-It ensures that multiple identical requests will have similar response no matter how many times they get called.
+
+
+
+PUT vs PATCH
+------------
+-PUT is used to replace an existing resource.
+-PATCH is used to apply partial modifications to a resource.
+
+		 
+http status codes
+=================
+1xx Informational  (100-Continue,101-switching Protocols,102-processing)
+2xx Success		   (200-OK,201-created,202-accepted,204-No Content)
+3xx Redirection	   (300-Multiple Choices,301-Moved Permanently,302-Found,304-Not Modified)
+4xx Client Error   (400-Bad Request,401-Unauthorized,403-Forbidden,404-Not Found)
+5xx Server Error   (500-Internal Server Error,502-Bad Gateway,503-Service Unavailable)
+
+
+
+POSTMAN
+=======
+-application / Chrome extension used to Test REST APIs.
+ https://www.postman.com/downloads/
+
+
+Free Online REST API for Testing 
+1. https://jsonplaceholder.typicode.com/users
+2. https://reqres.in/
+3. https://fakestoreapi.com/products
+4. https://api.github.com/users/google
+5. https://dummyjson.com/products
+6. https://dummy.restapiexample.com/  (CRUD)
+7. https://my-json-server.typicode.com/horizon-code-academy/fake-movies-api/movies
+8. https://api.publicapis.org/entries
+9. https://github.com/geertjanw/ojet-training/blob/master/employeeData.json
+
+
+Create REST API with json-server
+================================
+- In real time we will not use json- server package. . This is just for training.
+- Say in pur project, we have our company's APIs.
+
+https://medium.com/@devmrin/create-a-rest-api-json-server-in-less-than-1-minute-acf286600f03
+
+1.Install json-server (not necessarily inside angular project, run the below command in cmd)
+	npm install -g json-server
+2.create a json file with some data(not necessarily inside an angular project)
+    employees.json (filename can be anything.json) (copy con employees.json)(MAC: touch employees.json)
+3.start json server(go to the folder where json file is present,run the below command in cmd)
+   json-server --watch employees.json
+   
+http://localhost:3000/employees   
+GET    /employees
+GET    /employees/{id}
+POST   /employees
+PUT    /employees/{id}
+PATCH  /employees/{id}
+DELETE /employees/{id}
+  
+
+
 

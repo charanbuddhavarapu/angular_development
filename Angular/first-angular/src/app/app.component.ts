@@ -15,13 +15,16 @@ import { PipesComponent } from './components/pipes/pipes.component';
 import { PipesAssignmentComponent } from './components/pipes-assignment/pipes-assignment.component';
 import { ParentComponent } from './components/parent/parent.component';
 import { AssignEmployeeCRUDComponent } from './components/assign-employee-crud/assign-employee-crud.component';
+import { Math1Component } from './components/math1/math1.component';
+import { Math2Component } from './components/math2/math2.component';
 
 
 
 @Component({
   selector: 'app-root',
   imports: [NavbarComponent,CategoriesComponent,CarouselComponent,FooterComponent,BodyComponent,DatabindingAssignComponent,DBdemoComponent
-    ,DirectivesComponent,TableCardComponent,ProductsComponent,Demo1Component,EmployeeCRUDComponent,PipesComponent,PipesAssignmentComponent,ParentComponent,AssignEmployeeCRUDComponent],
+    ,DirectivesComponent,TableCardComponent,ProductsComponent,Demo1Component,EmployeeCRUDComponent,PipesComponent,
+    PipesAssignmentComponent,ParentComponent,AssignEmployeeCRUDComponent,Math1Component,Math2Component],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

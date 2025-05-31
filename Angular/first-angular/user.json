@@ -1,0 +1,84 @@
+{
+  "users": [
+    {
+      "id": "4",
+      "name": "Patricia",
+      "email": "Julianne.OConner@kory.org",
+      "address": {
+        "city": "South Elvis"
+      }
+    },
+    {
+      "id": "5",
+      "name": "Chelsey Dietrich",
+      "email": "Lucio_Hettinger@annie.ca",
+      "address": {
+        "city": "Roscoeview"
+      }
+    },
+    {
+      "id": "7",
+      "name": "Kurtis Weissnat",
+      "email": "Telly.Hoeger@billy.biz",
+      "address": {
+        "city": "Howemouth"
+      }
+    },
+    {
+      "id": "8",
+      "name": "Nicholas Runolfsdottir V",
+      "email": "Sherwood@rosamond.me",
+      "address": {
+        "city": "Aliyaview"
+      }
+    },
+    {
+      "id": "9",
+      "name": "Glenna Reichert",
+      "email": "Chaim_McDermott@dana.io",
+      "address": {
+        "city": "Bartholomebury"
+      }
+    },
+    {
+      "id": "10",
+      "name": "Clementina DuBuque",
+      "email": "Rey.Padberg@karina.biz",
+      "address": {
+        "city": "Lebsackbury"
+      }
+    },
+    {
+      "id": "12",
+      "name": "charan",
+      "email": "charan@mail.com",
+      "address": {
+        "city": "arizona"
+      }
+    },
+    {
+      "id": "13",
+      "name": "rakesh",
+      "email": "rakesh@mail.com",
+      "address": {
+        "city": "California"
+      }
+    },
+    {
+      "id": "14",
+      "name": "harsha",
+      "email": "harsha@mail.com",
+      "address": {
+        "city": "texas"
+      }
+    },
+    {
+      "id": "3",
+      "name": "Clementine Bauch",
+      "email": "Nathan@yesenia.net",
+      "address": {
+        "city": "McKenziehaven"
+      }
+    }
+  ]
+}

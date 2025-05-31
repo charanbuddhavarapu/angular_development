@@ -1,0 +1,27 @@
+<script>
+    let res1= Math.max(10,20,30,40,50);
+    console.log(res1);
+
+    user_url = 'http://jsonplaceholder.typicode.com/users';
+    let userPromise = fetch(user_url);
+
+    //- When ever we return a value from fetch methods - it returns a PROMISE.
+    //If a function retyurns a promise, how to get data from promise? - 2 options : 1. THEN method, 2. Async Await.
+
+    //1. Then() - a call back fn, takes 2 inputs
+    userPromise.then(
+    (response)=>{
+        console.log(response); //This is not final, an intermediate result, to get final response, we have to call response.json()
+        let jsonPromise = response.json(); //This again return a promise
+        jsonPromise.then(
+            (finalResponse)=>{
+                console.log(finalResponse)
+            },
+            (finalError)=>{
+                console.log(finalError)
+            }
+        )
+    }
+    )
+
+</script>

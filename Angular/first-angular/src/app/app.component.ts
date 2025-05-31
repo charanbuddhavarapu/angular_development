@@ -17,6 +17,13 @@ import { ParentComponent } from './components/parent/parent.component';
 import { AssignEmployeeCRUDComponent } from './components/assign-employee-crud/assign-employee-crud.component';
 import { Math1Component } from './components/math1/math1.component';
 import { Math2Component } from './components/math2/math2.component';
+import { AssignEmployeeSComponent } from './components/assign-employee-s/assign-employee-s.component';
+import { HttpDemo1Component } from './components/http-demo1/http-demo1.component';
+import { AssignHTTPComponent } from './components/assign-http/assign-http.component';
+import { HttpDemo2Component } from './components/http-demo2/http-demo2.component';
+import { Observabledemo1Component } from './components/observable-demo1/observable-demo1.component';
+import { ObservableDemo2Component } from './components/observable-demo2/observable-demo2.component';
+import { ObservableDemo3Component } from './components/observable-demo3/observable-demo3.component';
 
 
 
@@ -24,7 +31,9 @@ import { Math2Component } from './components/math2/math2.component';
   selector: 'app-root',
   imports: [NavbarComponent,CategoriesComponent,CarouselComponent,FooterComponent,BodyComponent,DatabindingAssignComponent,DBdemoComponent
     ,DirectivesComponent,TableCardComponent,ProductsComponent,Demo1Component,EmployeeCRUDComponent,PipesComponent,
-    PipesAssignmentComponent,ParentComponent,AssignEmployeeCRUDComponent,Math1Component,Math2Component],
+    PipesAssignmentComponent,ParentComponent,AssignEmployeeCRUDComponent,Math1Component,Math2Component,AssignEmployeeSComponent,
+  HttpDemo1Component,AssignHTTPComponent,HttpDemo2Component,
+  Observabledemo1Component, ObservableDemo2Component,ObservableDemo3Component],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

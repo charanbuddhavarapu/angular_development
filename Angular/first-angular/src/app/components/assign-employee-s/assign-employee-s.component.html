@@ -1,0 +1,31 @@
+<h3 class="text-center">Employee Gender Filter</h3>
+
+<div class="form-group mb-3">
+  <label for="genderSelect">Select Gender:</label>
+  <select id="genderSelect" class="form-control w-25" [(ngModel)]="selectedGender" (ngModelChange)="loadEmployees()">
+    <option value="all">All</option>
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+  </select>
+</div>
+
+<table class="table table-bordered mt-3">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Salary</th>
+      <th>Gender</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (emp of employees; track emp.eId) {
+      <tr>
+        <td>{{ emp.eId }}</td>
+        <td>{{ emp.name }}</td>
+        <td>{{ emp.sal }}</td>
+        <td>{{ emp.gender }}</td>
+      </tr>
+    }
+  </tbody>
+</table>

@@ -39,7 +39,7 @@ View Encapsulation : Styles of 1 component do not effect the styles of other com
 view encapsulation - emulated, shadowDOM, None - 3 types
 emulated V.E - default setup 
 
-*******************Directives***************** 
+*******************Directives*****************	` 
 
 Directives
 **********
@@ -58,7 +58,9 @@ Directives
 	[ ] is used with attribute direcives.
 	many attribute directives can be applied to an element.
 
-Note : Compononent can also be considered as directive, because it powers up the html by creating Custom Element, but the directives cannot be considered as component because it does not have a View (template and templateUrl cannot be used in directives)
+Note : Compononent can also be considered as directive, 
+because it powers up the html by creating Custom Element, but the directives cannot be considered as component
+ because it does not have a View (template and templateUrl cannot be used in directives)
 
 
 ====================================================================================================================
@@ -961,4 +963,85 @@ Hot and Cold Observables
 -Normal Observables are 'cold', Subject,BehaviourSubject,ReplaySubject are 'hot'.
 
 
+============================================================================================
+June 2nd
 
+
+Hot and Cold Observables
+========================
+-A hot Observable begins emitting items as soon as it is created, and so any observer who later subscribes to that Observable may start observing the sequence somewhere in the middle.
+-A cold Observable, waits until an observer/consumer subscribes to it before it begins to emit items,such an observer is guaranteed to see the whole sequence from the beginning.
+-Normal Observables are 'cold', Subject,BehaviourSubject,ReplaySubject are 'hot'.
+
+
+		
+Subject
+=======
+-An observable allows us only to subscribe  whereas a subject allows us to both publish and subscribe.
+-A subject allows our services to be used as both a publisher and a subscriber.
+-Subjects are like EventEmitters: they maintain a registry of many listeners.
+-Subject is a special type of Observable that allows values to be multicasted to many Observers,While plain Observables are unicast.
+-data can be pushed into a subject and the subjects subscribers will in turn receive that pushed data.
+-The real power of subjects comes into play with multicasting, where a subject is passed as the 
+observer to an observable,which will mean that, when the observable emits, the data is multicasted to all of the subjects subscriptions.
+-The 'asObservable' operator can be used to transform a subject into an observable.
+-A subject can emit data, on top of having the capability to be subscribed to.
+-To feed a new value to the Subject, just call next(theValue), and it will be multicasted to the Observers registered to listen to the Subject.
+-use a Subject in a service to fetch some data, and send the result to all components that subscribed to that Subject.
+
+-A BehaviorSubject is a Subject that can emit the current value
+(Subjects have no concept of current value)
+-With behavior subjects, it does not matter when you subscribe, 
+you always get the latest value right away.
+
+
+	Observable 							   Subjects  
+=================================================================================
+-Is just a function, no state        	-Has state. Stores data in memory
+-Cold									-Hot   
+-Code run for each observer           	-Same code run once for all observers
+-Creates only Observable             	-Can create and also listen Observable
+ ( data producer alone )                 ( data producer and consumer )      
+
+-Usage: 							    -Usage: 
+Simple Observable with only                        
+one Obeserver.                       	* Store data and modify frequently  
+										* Multiple observers listen to data
+
+
+Observables
+===========
+1. They are cold: Code gets executed when they have at least a single observer.
+2. Creates copy of data: Observable creates copy of data for each observer.(for each subscriber, observer creates a copy)
+3. Uni-directional: Observer/subscriber can not assign value to observable.
+
+Subjects (Subject,ReplaySubject,BehaviorSubject)
+================================================
+1. They are hot: code gets executed and value gets broadcasted even if there is no observer/consumer/subscriber.
+2. Shares data: Same data gets shared between all observers.
+3. bi-directional: Observer/subscriber can assign value to observable.
+
+
+	subjects				Each Next Subscribers receive
+=========================================================
+Subject		 ---------- Only Upcoming values
+BehaviorSubject-------  one previous value(current/initial) & upcoming values
+ReplaySubject---------  all previous values and upcoming values
+AsyncSubject  --------  latest value when stream gets closed (complete)
+
+
+
+Assignment
+==========
+create 1 employee crud application using 'subject' 
+
+
+
+What are signals
+================
+-A signal is a special type of variable that holds a value. it also provides notification when the variable value changes
+-A signal is a wrapper around a value that notifies interested consumers when that value changes. 
+-Signals can contain any value, from primitives to complex data structures.
+-We read a signal's value by calling its getter function, which allows Angular to track where the signal is used.
+-Signals may be either writable or read-only
+-A signal is not a replacement for RxJS and Observables for asynchronous operations, such as http.get

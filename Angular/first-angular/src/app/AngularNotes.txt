@@ -1045,3 +1045,203 @@ What are signals
 -We read a signal's value by calling its getter function, which allows Angular to track where the signal is used.
 -Signals may be either writable or read-only
 -A signal is not a replacement for RxJS and Observables for asynchronous operations, such as http.get
+
+
+=============================================================================================================
+June 3rd
+
+Forms in Angular
+================
+-Forms are used to collect the data from the user.
+
+1. Template driven
+2. Model Driven Form / Reactive Form
+
+
+Template Driven Forms Features
+------------------------------
+-Easy to use
+-Suitable for simple scenarios and fails for complex scenarios
+-Two way data binding(using [(NgModel)] syntax)
+-Minimal component code and more HTML Code
+-FormsModule needs to be imported
+
+-Unit testing is a challenge(testing validation logic)
+-limited capabilities to implement dynamic aspects like 
+ variable number of fields, repetitive fields, etc.
+
+
+Model driven forms/Reactive Forms 
+---------------------------------
+-More flexible
+-Handles any complex scenarios
+-More component code and less HTML markup
+-Adding elements dynamically
+-Better unit testing(testing validation logic)
+-Supports creation of forms with dynamic structure at runtime
+-Uses ReactiveFormsModule
+
+
+
+Classes:
+-------
+ng-pristine : No user interaction occured/not yet modified
+ng-dirty : User interaction occured/modified
+ng-valid : It meets all the validation
+ng-invalid : One of the Validation is not meeting
+ng-touched: already touched (blur)
+ng-untouched: not yet touched
+
+
+
+Template Driven Form
+--------------------
+1. import FormsModule to our Component
+   imports: [FormsModule]
+
+2. view/HTML File-
+   a. use 'ngForm' with form's template reference variable
+      <form #myForm="ngForm" ></form>
+	  
+   b. Use ngModel with every input field 
+      <input name="firstName" ngModel /> 
+   
+   c. use 'ngModelGroup' to group multiple fields
+	 <fieldset ngModelGroup="address">...</fieldset>
+
+3. Receive the data in component class from our form
+   <form #myForm="ngForm" (submit)="printFormData(myForm)"></form>
+   
+   printFormData(formInfo) {
+		console.log(formInfo.value);
+   }
+  
+
+
+
+FormControl
+-----------
+-we can get access to the FormControl instance by assigning ngModel to the element.
+ <input type="text" name="firstname" #fname="ngModel" ngModel>
+-the variable #fname holds the reference to the firstname FormControl. 
+ We can then access the properties of FormControl, like: value, valid, invalid, touched etc.
+  <h3>{{fname.value}}</h1>
+ 
+ 
+
+Set value in template-driven forms
+----------------------------------
+There are two ways we can set the value of the form elements:
+1. Two-way data binding (recomended)
+	user: any = { fname: 'sachin', lname: 'tendulkar' };
+	
+	<p>First Name: <input name="firstName" ngModel [(ngModel)]='user.fname'/></p>
+    <p>Last Name: <input name="lastName" ngModel [(ngModel)]='user.lname'></p>
+	
+2. Use the template reference variable
+
+
+Reset the form
+--------------
+<button type="reset">reset</button>
+	(OR)
+<form #myForm="ngForm" (reset)="reset(myForm)">
+reset(myForm :NgForm) {
+  console.log('Do Something...');
+  myForm.resetForm();
+}
+
+
+Validation
+----------
+<input name="firstName" #fname="ngModel" [(ngModel)]='user.fname' required minlength="5" />
+ <span *ngIf="fname.hasError('required') && fname.dirty" class="text-danger">Plz fill firstname</span>
+<span *ngIf="fname.hasError('minlength') && fname.dirty" class="text-danger">Minimum 5 chars required</span>
+
+<input type="email" name="email" #emailRef="ngModel" [(ngModel)]='user.email' required email />
+<span *ngIf="emailRef.hasError('required') && emailRef.dirty" class="text-danger">plz fill email</span>
+<span *ngIf="emailRef.hasError('email') && emailRef.dirty" class="text-danger">email format is not correct</span>
+
+
+
+Assignment
+----------
+-Create a Registration form with validation (inputbox,radio,checkbox,dropdown,textarea)
+https://www.tektutorialshub.com/angular/template-driven-form-validation-in-angular/
+
+
+
+Model driven form
+-----------------
+1. import ReactiveFormsModule 
+	a. import { ReactiveFormsModule } from '@angular/forms';
+	b. imports:[ReactiveFormsModule]  
+	
+2. view 
+	a. use formGroup with form
+		<form [formGroup]="registerForm"> </form>
+	b. use formControlName with every form field
+		<input formControlName="firstname">
+	c. use formGroupName to group multiple form fields.
+	    <fieldset formGroupName="address">...</fieldset>
+
+3. Component
+	a. create FormGroup class Object to group fields
+		new FormGroup({    })
+	b. create FormControl class object for each form fields
+		new FormControl()
+
+
+
+Validate a form on change/blur/submit
+-------------------------------------
+lastname: new FormControl("tendulkar",
+      { validators: [Validators.required], updateOn: "blur" }
+    )	
+new FormGroup({fName:new FormControl()}, { updateOn: 'submit' })
+
+
+
+
+FormBuilder
+===========
+-Angular FormBuilder API makes it easier to build reactive forms.
+-We can easily add the FormGroup, nested FormGroups, FormArrays & FormControls.
+-Provides factory methods like .group() , .array() which simplify form creation
+
+
+without FormBuilder
+===================
+loginForm = new FormGroup({
+	  email: new FormControl('')
+	  password: new FormControl('')
+});
+
+
+With FormBuilder
+================
+1. inject FormBuilder into our component class
+    constructor(private formBuilder: FormBuilder) {
+	}
+2. loginForm = this.formBuilder.group({
+	  email: [''],
+	  password: [''],
+	  address: this.formBuilder.group({});
+	});
+
+
+SetValue and PatchValue
+=======================
+SetValue: 
+-It accepts an object that matches the structure of the FormGroup with control names as key.
+-we need all control data to match the structure and then bind the data to the form
+ex: this.myForm.setValue({fName:'abc',lName:'pqr',email:''})
+
+PatchValue: 
+-It accepts an object and does its best to match the values. 
+-It can accept partial form group structure.
+ex: this.myForm.patchValue({name:'UpdatedName'})
+	
+
+
+	

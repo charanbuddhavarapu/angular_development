@@ -1,0 +1,50 @@
+<table cellpadding="8" cellspacing="0" border="1">
+  <thead>
+    <tr>
+      <th>Employee ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Salary</th>
+      <th>Gender</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (emp of employees; track $index) {
+      <tr>
+        <td>{{ emp.id }}</td>
+        <td>{{ emp.firstName }}</td>
+        <td>{{ emp.lastName }}</td>
+        <td>{{ emp.sal | currency }}</td>
+        <td>{{ emp.gender }}</td>
+        <td>{{emp.email}}</td>
+        <td>
+          <button (click)="deleteEmployee(emp.id)">Delete</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+
+<hr/>
+
+<h3>Add Employee</h3><input type="text" placeholder="ID" #eId />
+<input type="text" placeholder="ID" [(ngModel)]="newEmployee.id" name="id" />
+<input type="text" placeholder="First Name" [(ngModel)]="newEmployee.firstName" name="firstName" />
+<input type="text" placeholder="Last Name" [(ngModel)]="newEmployee.lastName" name="lastName" />
+<input type="number" placeholder="Salary" [(ngModel)]="newEmployee.sal" name="sal" />
+<input type="number" placeholder="Email" [(ngModel)]="newEmployee.email" name="email" />
+<select [(ngModel)]="newEmployee.gender" name="gender">
+  <option value="" disabled selected>Select Gender</option>
+  <option value="Male">Male</option>
+  <option value="Female">Female</option>
+  <option value="Other">Other</option>
+</select>
+
+<button (click)="addEmployee()">Add Employee</button>
+
+
+<br />
+
+<button (click)="clearEmployees()">Clear All Employees</button>

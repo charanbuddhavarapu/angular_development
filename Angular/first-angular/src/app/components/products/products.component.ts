@@ -18,14 +18,19 @@ import {faStar} from '@fortawesome/free-solid-svg-icons'
 // then when we apply sort, the sorting will also be done on filtered data only
 //
 export class ProductsComponent {
-  productsArr = productData;                         //  Base array
+
+
+  productsArr = productData;
+  p: number = 1;
+  faStar = faStar;
+                         //  Base array
   sortedProductArray = [...this.productsArr];        // To store sorted array - Sorted array, shallowcopy so that we can allow changes on this without the base array getting affected
   filteredArray = [...this.productsArr];             // Filtered version that we show on the UI
 
-  p: number = 1;
+  
   searchTerm: string = '';
   sortOrder: 'asc' | 'desc' = 'asc';
-  faStar = faStar;
+  
 
   // Called on every search input change
   getfilteredProducts() {

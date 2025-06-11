@@ -1,0 +1,17 @@
+<p>aboutus works!</p>
+
+<h3 class="text-center">This is about us component</h3>
+
+<hr/>
+
+<!--If we just have a simple requirement to switch from one page to another-->
+
+<!--This will do the page refresh, but it is not what is intended-->
+<a href = "home">Go to home</a>
+
+
+<!--But here, it is not refreshing the entire page, but just aboutus/home gets appended to the url-->
+<button class="btn-btn-primary mx-2" routerLink = "/home">Home</button>
+
+<!--If we have a complext requirement of fetch the data, do some thing then go to home-->
+ <button class="btn btn-primary" (click)="doSomethingAndGoHome()">Home 2- Funtion</button>

@@ -95,6 +95,7 @@ ng-content/ Content projection
 ==============================
 - Parent component passes content to child content, that is called content projection
 -child component collects that using nd-content, and then displays it.
+
 - CHILD component sends the content, but then PARENT component has the ability to display the form it wants to show the content(table,card list etc)
 - My-modal is CHILD COMPONENT (base), body and footer components use the mymodal component, so they are consumers(Parent Component)
 -used to create configurable components.
@@ -159,8 +160,9 @@ Custom Directives - how to create a directive
 -directives won't have templates, whereas components have templates.
 - when we create a custom directive, it won't have a template, it will generate only 2 files - ts file and unit test file
 
--@HostBinding  -  Set a property on the host element.
--@HostListener  - Listen events from the host element.
+-@HostBinding  -  Set a property on the host element./ to set a value
+-@HostListener  - Listen events from the host element. /when we want to listen to elements
+- 
 
 
 Component vs Directive
@@ -881,6 +883,12 @@ Digital Clock
 this.time$ = new Observable<string>(observer => {
    setInterval(() => observer.next(new Date().toLocaleTimeString()), 1000);
 });
+   // subscriber
+   this.producer1.subscribe({
+    next: (v) => console.log(v),
+    error: (e) => console.error(e),
+    complete: () => console.info('completed')
+   });
 
 
 
@@ -1243,5 +1251,204 @@ PatchValue:
 ex: this.myForm.patchValue({name:'UpdatedName'})
 	
 
+================================================================================================================
+
+June 7th
+
+Routing
+=======
+-Single-Page Applications (SPAs) are Web apps that load a single HTML page and 
+dynamically update that page as the user interacts with the application.
+-Complete page reload doesn't happen. only a portion of a page gets loaded.
+-Every time a link is clicked or the browser URL changes, Angular router makes sure our application reacts accordingly.
+
+To accomplish that, Angular router performs the following 7 steps in order:
+PRIGRAM
+--------
+Parse: it parses the browser URL the user wants to navigate to
+Redirect: it applies a URL redirect (if one is defined)
+Identify: it identifies which router state corresponds to the URL
+Guard: it runs the guards that are defined in the router state
+Resolve: it resolves the required data for the router state
+Activate: it activates the Angular components to display the page
+Manage: it manages navigation and repeats the process when a new URL is requested
+
+
+Terminologies:
+------------
+router service: the global Angular router service in our application
+router configuration: definition of all possible router states our application can be in
+router state: a state of the router at some point in time, expressed as a tree of activated route snapshots
+activated route snapshot: provides access to the URL, parameters and data for a router state node
+guard: script that runs when a route is loaded, activated or deactivated
+resolver: script that fetches data before the requested page is activated
+router outlet: location in the DOM where Angular router can place activated components
+URL segments: parts of the URL that are divided by slashes
+
+
+Location Strategies
+===================
+Angular supports two Location Strategies:
+1.HashLocationStrategy
+	ex: http://localhost:4200/#/product
+2. PathLocationStrategy
+   ex: http://localhost:4200/product
+
+
+
+
+
+routing Program:
+----------------
+1. create components
+	ng g c home
+	ng g c aboutus
+	ng g c career
+	ng g c notfound
+
+2. in app.routes.ts configure all the routes.
+	const routes: Routes = [
+	  { path: 'home', component: HomeComponent },
+	  { path: 'aboutus', component: AboutusComponent },
+	  { path: 'careers', component: CareersComponent },
+	  { path: '', component: HomeComponent },
+	  { path: '**', component: NotfoundComponent },
+	];
+
+Note: all these routes:[] are used in app.config.ts
+     provideRouter(routes)
+
+3. use router-outlet in HTML & import 'RouterOutlet' in Typescript file
+    <router-outlet></router-outlet>
+   
+   
+4.  Add below code in Nav-bar.component.html  & import 'RouterLink' in Typescript file
+   <a class="nav-link" routerLink="home" routerLinkActive="active-link">Home</a>
+   <a class="nav-link" routerLink="aboutus">Aboutus</a>
+   <a class="nav-link" routerLink="careers">Careers</a>
+   
+
+
+RouterOutlet
+============
+-Acts as a placeholder that Angular dynamically fills based on the current router state.
+-Each outlet can have a unique name, determined by the optional name attribute. The name cannot be set or changed dynamically. If not set, default value is "primary"
+  <router-outlet></router-outlet>
+  <router-outlet name='left'></router-outlet>
+  <router-outlet name='right'></router-outlet>
+-{path: <base-path>, component: <component>, outlet: <target_outlet_name>}
+<router-outlet
+  (activate)='onActivate($event)'
+  (deactivate)='onDeactivate($event)'
+  (attach)='onAttach($event)'
+  (detach)='onDetach($event)'></router-outlet>
+  
+
+
+Active-Route
+------------
+1. <a routerLink="careers" routerLinkActive="active">careers</a>
+2. import  RouterLinkActive in typescript file
+3. add css for 'active' class 
+   .active{background-color: aquamarine;}
+
+
+
+Navigate from one route to another
+----------------------------------
+<button routerLink="/home">take me to Home </button>			
+			(OR)
+constructor(private routerObj : Router) { }
+takeMeToHtml() {
+  this.routerObj.navigate(['/home'])
+}
+  
+
+
+Navigate Previous / Next Route
+==============================
+1. Inject Location Service  
+   import { Location } from '@angular/common';
+   constructor(private location: Location) {
+   }
+2. user location service methods like: back() , historyGo()
+   this.location.back()
+   this.location.forward()
+   this.location.historyGo(-2)
+   this.location.historyGo(2)
+   
+	
+  
+Route-Parameter
+---------------
+1. Path Param
+	ex:- /productDetails/101
+
+2. Query param
+	ex:- /search?searchWord=skybag&filter=something
+	
+
+
+
+nested/Child Routing
+====================
+-A child route is basically a route within a route. 
+
+-Ex: there can be multiple components within a single Login route:
+Forgot Password component
+Signup component
+Login component
+
+
+{
+    path:"products",
+    component: ProductsComponent,
+    children: [
+      { path:"new", component: NewProductsComponent},
+      { path:"featured", component: FeaturedProductsComponent}
+	 ]
+  }
+-------------------------
+<a routerLink="/products/new">New Products</a>
+<a routerLink="featured">Featured Products</a>
+<router-outlet></router-outlet>
+
+
 
 	
+Protecting routes with guard
+----------------------------
+-canActivate : Checks to see if a user can visit a route while navigating to a route
+-canActivateChild : When Angular finds a canActivateChild guard attached to the parent route, it invokes it every time the user tries to navigates to the child route. Hence instead of attaching Guard service in every child, we can attach it to the parent route.
+-canDeactivate : Checks to see if a user can exit a route while navigating from a route
+-canMatch: helps in dynamically loading the components of our choice
+
+Note:-canActivate Guard prevents unauthorized user from accessing the route. 
+	But it does not stop the module from being downloaded. 
+	The user can use the chrome developer console to see the source code. 
+	The CanLoad Guard prevents the module from being downloaded.
+
+
+Router-Guard
+------------
+1. create a guard by using below CLI command
+   ng g guard auth 
+   (change the logic inside the guard)   
+
+2. in Route Configuration protect the route by adding canActivate:[myGuard]
+   {
+    path: 'productdetails/:id',
+    component: productDetailsComponent,
+    canActivate: [myGuard]
+  }
+
+
+
+Resolvers
+---------
+-Angular Resolver is used for pre-fetching some of the data when the user is navigating from one route to another. 
+-It can be defined as a smooth approach for enhancing user experience by loading data before the user navigates to a particular component.
+-resolver is an intermediate code that is executed between clicking the link and loading the component.
+-We can use Angulars Route Resolver class for fetching the data before our component is loaded.
+-The router waits for the data to be resolved before the route is finally activated.
+-While Swithing from List page to details page
